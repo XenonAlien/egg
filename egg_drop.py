@@ -1,4 +1,4 @@
-def egg_drop(max_floor, egg_breaks):
+egg_drop(max_floor, egg_breaks):
     """
     Оптимальный алгоритм для задачи о яйцах и небоскрёбе
     :param max_floor: количество этажей (int)
@@ -15,8 +15,8 @@ def egg_drop(max_floor, egg_breaks):
             # Фаза 2: Бинарный поиск
             low = current_floor // 2
             high = current_floor
-            while low <= high:
-                mid = (low + high) // 2
+            while high - low > 1:
+    mid = low + (high - low) // 2
                 if egg_breaks(mid):
                     high = mid - 1
                 else:
