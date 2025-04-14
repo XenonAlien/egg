@@ -1,17 +1,17 @@
-egg_drop(max_floor, egg_breaks):
-    """
-    Оптимальный алгоритм для задачи о яйцах и небоскрёбе
-    :param max_floor: количество этажей (int)
-    :param egg_breaks: функция, возвращающая True если яйцо разбивается на указанном этаже
-    :return: (критический этаж, количество попыток)
-    """
+def egg_drop(max_floor, egg_breaks, verbose=True):
     step = 1
     current_floor = 0
     attempts = 0
-
-    # Фаза 1: Экспоненциальный поиск
+    
     while current_floor <= max_floor:
+        if verbose:
+            print(f"Попытка {attempts+1}: этаж {current_floor}", end=" — ")
         if egg_breaks(current_floor):
+            if verbose:
+                print("РАЗБИЛОСЬ! (переходим к бинарному поиску)")
+        else:
+            if verbose:
+                print("не разбилось")
             # Фаза 2: Бинарный поиск
             low = current_floor // 2
             high = current_floor
